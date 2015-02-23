@@ -65,5 +65,40 @@ public abstract class MathUtil {
 			return n * recursiveFactorial(n-1);
 		}
 	}
+	
+	/**
+	 * Recursive implementation of fibonacci.
+	 * 
+	 * @param f
+	 * @return
+	 */
+	public static int fibRecursive(int f){
+		if(f == 0){
+			return 0;
+		}else if(f == 1 || f == 2){
+			return 1;
+		}
+		return fibRecursive(f-1) + fibRecursive(f-2);
+	}
+	
+	/**
+	 * Iterative implementation of fibonacci.
+	 * 
+	 * @param f
+	 * @return
+	 */
+	public static int fibLoop(int f){
+		if(f == 0)
+			return 0;
+		if(f == 1 || f == 2)
+			return 1;
+		int fib = 0, fibMinus1 = 1, fibMinus2 = 1;
+		for(int i=2; i<f; i++){
+			fib = fibMinus1 + fibMinus2;
+			fibMinus2 = fibMinus1;
+			fibMinus1 = fib;
+		}
+		return fib;
+	}	
 
 }
