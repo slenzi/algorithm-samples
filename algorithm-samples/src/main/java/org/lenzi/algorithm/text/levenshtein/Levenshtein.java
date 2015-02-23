@@ -1,9 +1,9 @@
 /**
  * 
  */
-package org.lenzi.algorithm.levenshtein;
+package org.lenzi.algorithm.text.levenshtein;
 
-import org.lenzi.algorithm.util.MathUtil;
+import org.lenzi.algorithm.math.util.MathUtil;
 
 /**
  * Levenshtein distance is a metric for measuring the amount of difference between two sequences

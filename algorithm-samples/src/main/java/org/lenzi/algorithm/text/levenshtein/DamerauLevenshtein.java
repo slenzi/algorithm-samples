@@ -1,11 +1,11 @@
 /**
  * 
  */
-package org.lenzi.algorithm.levenshtein;
+package org.lenzi.algorithm.text.levenshtein;
 
 import java.util.Arrays;
 
-import org.lenzi.algorithm.util.MathUtil;
+import org.lenzi.algorithm.math.util.MathUtil;
 
 /**
  * @author slenzi

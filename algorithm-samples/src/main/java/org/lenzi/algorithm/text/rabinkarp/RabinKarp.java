@@ -1,4 +1,4 @@
-package org.lenzi.algorithm.rabinkarp;
+package org.lenzi.algorithm.text.rabinkarp;
 
 import java.math.BigInteger;
 import java.util.Random;
@@ -6,6 +6,7 @@ import java.util.Random;
 /**
  * Rabin-Karp implementation
  * 
+ * @author slenzi
  */
 public class RabinKarp {
 	

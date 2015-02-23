@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.lenzi.algorithm.util;
+package org.lenzi.algorithm.math.util;
 
 import java.math.BigInteger;
 
