@@ -6,7 +6,7 @@ import java.util.Random;
 /**
  * Rabin-Karp implementation
  * 
- * @author slenzi
+ * http://algs4.cs.princeton.edu/53substring/RabinKarp.java.html
  */
 public class RabinKarp {
 	

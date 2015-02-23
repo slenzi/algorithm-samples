@@ -8,7 +8,7 @@ import org.lenzi.algorithm.math.util.MathUtil;
 /**
  * Levenshtein distance is a metric for measuring the amount of difference between two sequences
  * 
- * @author slenzi
+ * From wikipedia
  */
 public abstract class Levenshtein {
 	

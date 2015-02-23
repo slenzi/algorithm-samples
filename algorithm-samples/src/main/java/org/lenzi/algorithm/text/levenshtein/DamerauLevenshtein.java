@@ -8,7 +8,7 @@ import java.util.Arrays;
 import org.lenzi.algorithm.math.util.MathUtil;
 
 /**
- * @author slenzi
+ * From wikipedia
  */
 public abstract class DamerauLevenshtein {
 
