@@ -18,6 +18,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		
 		<version.junit>4.12</version.junit>
+		<version.google.guava>18.0</version.google.guava>
 		
 	</properties>
 
@@ -28,6 +29,12 @@
 			<artifactId>junit</artifactId>
 			<version>${version.junit}</version>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>${version.google.guava}</version>
 		</dependency>
 
 	
