@@ -13,7 +13,7 @@ public class Test {
 	}
 
 	private void doTest() {
-	
+		
 		doAutomataTest();
 		
 	}

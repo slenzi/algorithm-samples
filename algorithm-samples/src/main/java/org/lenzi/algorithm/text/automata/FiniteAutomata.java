@@ -127,6 +127,7 @@ public class FiniteAutomata {
 	}
 	
 	private void printStateTable(){
+		
 		int i = 0, j = 0;
 		for (i = 0; i < stateTable.length; i++){
 			for(j = 0; j < stateTable[i].length; j++){
