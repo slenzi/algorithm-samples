@@ -29,8 +29,8 @@ public class Test {
 		
 		runAutomataTest(automata,"Fox","The quick brown fox jumped over the lazy dog. This made the fox tired.");
 		
-		String pattern	= "GCC";
-		String sequence = "ACAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCACGGCCACCGCTGCCCTGCC";
+		String pattern	= "GGCCTCCTGC";
+		String sequence = "ACGGCCTCCTGCAAGATGCCATTGTCCCCCGGCCTCCTGCTGCTGCTGCTCTCCGGGGCCTCCTGCGGCCACGGCCACCGCTGCGGCCTCCTGCCCTGCC";
 				
 		runAutomataTest(automata, pattern, sequence);
 		
