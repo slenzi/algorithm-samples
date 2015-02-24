@@ -77,5 +77,60 @@ public abstract class DamerauLevenshtein {
 		return matrix[a.length() + 1][b.length() + 1];
 		
 	}
+	
+	/**
+	 * Alternative edit distance algorithm.
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public static int altGetEditDistance(String a, String b){
+		
+		int[][] ed = new int[a.length() + 1][b.length() + 1];
+		
+		int i = 0, j = 0;
+		for (i = 0; i < ed.length; i++){
+			for (j = 0; j < ed[i].length; j++){
+				if (i == 0){
+					// fill first row with 1, 2, 3, ... N where is length of b.
+					ed[i][j] = j;
+				} else if (j == 0){
+					// fill first column with 1, 2, 3, ....- N where is length of a.
+					ed[i][j] = i;
+				} else {
+					// fill all other cells with 0
+					ed[i][j] = 0;
+				}
+				if (i > 0 && j > 0){
+					if (a.charAt(i - 1) == b.charAt(j - 1)){
+						// they are equal. take the previous edit distance [i-1][j-1]
+						ed[i][j] = ed[i - 1][j - 1];
+					} else {
+						// they are different. add 1 to the three edit distances [i-1][j-1] + 1, [1][j-1] + 1, [i-1][j] + 1
+						// then use the minimum of the three.
+						ed[i][j] = MathUtil.min(
+									ed[i - 1][j] + 1,
+									ed[i][j - 1] + 1,
+									ed[i - 1][j - 1] + 1
+								);
+					}
+				}
+			}
+		}
+		printMatrix(ed);
+		return ed[ed.length-1][ed[0].length - 1];
+	}
+	
+	public static void printMatrix(int[][] m){
+		int i = 0, j = 0;
+		for (i = 0; i < m.length; i++){
+			for(j = 0; j < m[i].length; j++){
+				System.out.print(String.format("%1$-3d", m[i][j]));
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}	
 
 }
