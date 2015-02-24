@@ -74,6 +74,7 @@ public abstract class DamerauLevenshtein {
 			}
 			DA[a.charAt(i - 1)] = i;
 		}
+		//printMatrix(matrix);
 		return matrix[a.length() + 1][b.length() + 1];
 		
 	}
@@ -86,6 +87,21 @@ public abstract class DamerauLevenshtein {
 	 * @return
 	 */
 	public static int altGetEditDistance(String a, String b){
+		
+		int[][] ed = altGetEditDistanceMatrix(a, b);
+		
+		return ed[ed.length-1][ed[0].length - 1];
+		
+	}
+	
+	/**
+	 * Get the full edit distance matrix
+	 * 
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public static int[][] altGetEditDistanceMatrix(String a, String b){
 		
 		int[][] ed = new int[a.length() + 1][b.length() + 1];
 		
@@ -118,9 +134,9 @@ public abstract class DamerauLevenshtein {
 				}
 			}
 		}
-		printMatrix(ed);
-		return ed[ed.length-1][ed[0].length - 1];
-	}
+		return ed;
+		
+	}	
 	
 	public static void printMatrix(int[][] m){
 		int i = 0, j = 0;

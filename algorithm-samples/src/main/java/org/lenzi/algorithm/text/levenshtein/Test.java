@@ -133,15 +133,23 @@ public class Test {
 			System.out.println("s1: " + s1 + ", s2: " + s2 + " Compare: " + DamerauLevenshtein.compare(s1, s2));
 		}
 		
-		System.out.println("\n");
-		
 		//
 		// Damerau-Levenshtein alternative
 		//
+		System.out.println("\n");
 		System.out.println("Damerau-Levenshtein alternative compare...\n");
 		for(int i=0; i<a1.length; i++){
 			System.out.println("a1: " + a1[i] + ", a2: " + a2[i] + " Compare: " + DamerauLevenshtein.altGetEditDistance(a1[i], a2[i]));
 		}
+		
+		//
+		// Full edit distance matrix
+		//
+		System.out.println("\n");
+		System.out.println("Damerau-Levenshtein edit distance matrix...\n");
+		int[][] distanceMatrix = DamerauLevenshtein.altGetEditDistanceMatrix(a1[1], a2[1]);
+		DamerauLevenshtein.printMatrix( distanceMatrix );
+		System.out.println("Edit distance = " + distanceMatrix[distanceMatrix.length-1][distanceMatrix[0].length - 1]);
 		
 	}
 
