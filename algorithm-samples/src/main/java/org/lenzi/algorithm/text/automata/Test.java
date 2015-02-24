@@ -22,14 +22,21 @@ public class Test {
 		
 		FiniteAutomata automata = new FiniteAutomata();
 		
-		String pattern = "ababaca";
-		String text = "abccbababacabbb";
 		
-		int[] indexes = automata.search(FiniteAutomata.ASCII, pattern, text);
+		runAutomataTest(automata,"ababaca","abccbababacabbb");
+			
+		runAutomataTest(automata,"Fox","The quick brown fox jumped over the lazy dog. This made the fox tired.");
+		
+	}
+	
+	private void runAutomataTest(FiniteAutomata automata, String pattern, String text){
+		
+		int[] indexes = automata.search(FiniteAutomata.ASCII, pattern, text, true);
+		
 		for(int i=0; i< indexes.length; i++){
 			System.out.println("Found match at index: " + indexes[i]);
-		}		
-		
+		}
+		System.out.println();
 	}
 	
 	private void toCharTest(){

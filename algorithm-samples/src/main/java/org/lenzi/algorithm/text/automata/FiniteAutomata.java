@@ -24,6 +24,8 @@ public class FiniteAutomata {
 	
 	private int ALPHA_SIZE = ASCII_EXTENDED;
 	
+	private boolean ignoreCase = false;
+	
 	public FiniteAutomata() {
 		
 	}
@@ -31,13 +33,22 @@ public class FiniteAutomata {
 	/**
 	 * Search for all occurrences of 'pattern' in 'text'. 
 	 * 
+	 * @param alphaSize
 	 * @param pattern
 	 * @param text
+	 * @param ignoreCase
+	 * @return
 	 */
-	public int[] search(int alphaSize, String pattern, String text){
+	public int[] search(int alphaSize, String pattern, String text, boolean ignoreCase){
 		
-		initialize(alphaSize, pattern, text);
+		initializeMachine(alphaSize, pattern, text, ignoreCase);
 		
+		return getMatchIndexes();
+		
+	}
+	
+	private int[] getMatchIndexes(){
+	
 		List<Integer> indexes = new ArrayList<Integer>();
 		
 		int i = 0, j = 0;
@@ -47,19 +58,25 @@ public class FiniteAutomata {
 				indexes.add(i - patLen + 1);
 			}
 		}
-		return Ints.toArray(indexes);
+		return Ints.toArray(indexes);		
 		
 	}
 	
 	/**
 	 * Initialize state machine
+	 * 
+	 * @param alphaSize
+	 * @param pattern
+	 * @param text
+	 * @param ignoreCase
 	 */
-	private void initialize(int alphaSize, String pattern, String text){
+	private void initializeMachine(int alphaSize, String pattern, String text, boolean ignoreCase){
 		
 		this.ALPHA_SIZE = alphaSize;
 		
-		this.pattern = pattern;
-		this.text = text;
+		this.ignoreCase = ignoreCase;
+		this.pattern = ((ignoreCase) ? pattern.toUpperCase() : pattern);
+		this.text = ((ignoreCase) ? text.toUpperCase() : text);
 		
 		patLen = pattern.length();
 		txtLen = text.length();
@@ -117,7 +134,7 @@ public class FiniteAutomata {
 			}
 			System.out.println();
 		}
-		System.out.println("\n");
+		System.out.println();
 	}
 	
 }
