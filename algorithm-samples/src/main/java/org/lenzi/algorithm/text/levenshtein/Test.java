@@ -78,78 +78,29 @@ public class Test {
 					+ "on beaches by beach bumbs.",
 			"Sally saw seashells at the seashore.",
 			"1  2  3  4  5  6  7  8  9" // two space between each character
-		};		
+		};
+	
 		
-		String s1 = null, s2 = null;
 		
-		//
-		// Levenshtein
-		//
-		System.out.println("Levenshtein compare...\n");
-		for(int i=0; i<a1.length; i++){
-			System.out.println("a1: " + a1[i] + ", a2: " + a2[i] + " Compare: " + Levenshtein.compare(a1[i], a2[i]));
-		}
+		System.out.println("Optimal string alignment distance matrix...\n");
+		int[][] om = OptimalStringAlignmentDistance.getDistanceMatrix("pantera","aorta");
+		MathUtil.printMatrix( om );
+		System.out.println("Edit distance = " + om[om.length-1][om[0].length - 1]);
 		
-		//
-		// Levenshtein, only with alpha-numeric
-		//
-		System.out.println("\n");
-		System.out.println("Levenshtein compare alpha-numeric...\n");
-		for(int i=0; i<a1.length; i++){
-			s1 = a1[i].replaceAll("[^a-zA-Z0-9 ]", "").trim();
-			s2 = a2[i].replaceAll("[^a-zA-Z0-9 ]", "").trim();
-			System.out.println("s1: " + s1 + ", s2: " + s2 + " Compare: " + Levenshtein.compare(s1, s2));
-		}
+		System.out.println();
 		
-		//
-		// Levenshtein, clean whitespace
-		//
-		System.out.println("\n");
-		System.out.println("Levenshtein compare clean whitespace...\n");
-		for(int i=0; i<a1.length; i++){
-			s1 = a1[i].replaceAll(" +", " ").trim();
-			s2 = a2[i].replaceAll(" +", " ").trim();
-			System.out.println("s1: " + s1 + ", s2: " + s2 + " Compare: " + Levenshtein.compare(s1, s2));
-		}		
+		System.out.println("Levenshtein distance matrix...\n");
+		int[][] lm = Levenshtein.altGetEditDistanceMatrix("pantera","aorta");
+		MathUtil.printMatrix( lm );
+		System.out.println("Edit distance = " + lm[lm.length-1][lm[0].length - 1]);
 		
-		//
-		// Damerau-Levenshtein
-		//
-		System.out.println("\n");
-		System.out.println("Damerau-Levenshtein compare...\n");
-		for(int i=0; i<a1.length; i++){
-			System.out.println("a1: " + a1[i] + ", a2: " + a2[i] + " Compare: " + DamerauLevenshtein.compare(a1[i], a2[i]));
-		}
+		System.out.println();
 		
-		//
-		// Damerau-Levenshtein, clean whitespace
-		//
-		System.out.println("\n");
-		System.out.println("Damerau-Levenshtein clean whitespace.\n");
+		System.out.println("Damerau Levenshtein distance matrix...\n");
+		int[][] dlm = DamerauLevenshtein.getDistanceMatrix("pantera","aorta",DamerauLevenshtein.ASCII);
+		DamerauLevenshtein.printMatrix( dlm );
+		System.out.println("Edit distance = " + dlm[dlm.length-1][dlm[0].length - 1]);
 		
-		for(int i=0; i<a1.length; i++){
-			s1 = a1[i].replaceAll(" +", " ").trim();
-			s2 = a2[i].replaceAll(" +", " ").trim();
-			System.out.println("s1: " + s1 + ", s2: " + s2 + " Compare: " + DamerauLevenshtein.compare(s1, s2));
-		}
-		
-		//
-		// Damerau-Levenshtein alternative
-		//
-		System.out.println("\n");
-		System.out.println("Damerau-Levenshtein alternative compare...\n");
-		for(int i=0; i<a1.length; i++){
-			System.out.println("a1: " + a1[i] + ", a2: " + a2[i] + " Compare: " + DamerauLevenshtein.altGetEditDistance(a1[i], a2[i]));
-		}
-		
-		//
-		// Full edit distance matrix
-		//
-		System.out.println("\n");
-		System.out.println("Damerau-Levenshtein edit distance matrix...\n");
-		int[][] distanceMatrix = DamerauLevenshtein.altGetEditDistanceMatrix(a1[1], a2[1]);
-		DamerauLevenshtein.printMatrix( distanceMatrix );
-		System.out.println("Edit distance = " + distanceMatrix[distanceMatrix.length-1][distanceMatrix[0].length - 1]);
 		
 	}
 

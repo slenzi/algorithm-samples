@@ -99,6 +99,17 @@ public abstract class MathUtil {
 			fibMinus1 = fib;
 		}
 		return fib;
-	}	
+	}
+	
+	public static void printMatrix(int[][] m){
+		int i = 0, j = 0;
+		for (i = 0; i < m.length; i++){
+			for(j = 0; j < m[i].length; j++){
+				System.out.print(String.format("%1$-3d", m[i][j]));
+			}
+			System.out.println();
+		}
+		System.out.println();
+	}
 
 }
