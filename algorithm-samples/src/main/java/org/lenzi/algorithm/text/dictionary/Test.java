@@ -38,7 +38,7 @@ public class Test {
 				"presciptibillity",	// prescriptibility
 				"salloon",			// saloon
 				"trakeostomy",		// tracheostomy
-				"cermugeon"			// curmudgeon
+				"cermugeonnnnn"		// curmudgeon
 		};
 		
 		for(String s : misspelled){
