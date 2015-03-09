@@ -35,15 +35,21 @@ public class SpellChecker {
 		int prevDistance = Integer.MAX_VALUE;
 		
 		for(String s : dict.words()){
-			newDistance = Levenshtein.altGetEditDistance(word, s);
-			if(newDistance < prevDistance){
-				// lower edit distance. clear previous suggestions and start over
-				prevDistance = newDistance;
-				suggestions = new ArrayList<String>();
-				suggestions.add(s);
-			}else if(newDistance == prevDistance){
-				// same edit distance. keep as possible suggestions
-				suggestions.add(s);
+			
+			// only check words that have a size difference of less than two characters.
+			if(Math.abs(s.length() - word.length()) <= 2){
+			
+				newDistance = Levenshtein.altGetEditDistance(word, s);
+				if(newDistance < prevDistance){
+					// lower edit distance. clear previous suggestions and start over
+					prevDistance = newDistance;
+					suggestions = new ArrayList<String>();
+					suggestions.add(s);
+				}else if(newDistance == prevDistance){
+					// same edit distance. keep as possible suggestions
+					suggestions.add(s);
+				}
+				
 			}
 		}		
 		return suggestions;

@@ -35,11 +35,14 @@ public class Test {
 				"festivties",		// festivities
 				"incredditable",	// increditable
 				"nongovrnmentl",	// nongovernmental
-				"presciptibillity"	// prescriptibility
+				"presciptibillity",	// prescriptibility
+				"salloon",			// saloon
+				"trakeostomy",		// tracheostomy
+				"cermugeon"			// curmudgeon
 		};
 		
 		for(String s : misspelled){
-			System.out.println("Suggestion = " + checker.correct(s));
+			System.out.println(  String.format("Suggestion for %1$-20s = %2$s", s, checker.correct(s)) );
 		}		
 		
 	}
