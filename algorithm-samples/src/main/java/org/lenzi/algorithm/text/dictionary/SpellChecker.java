@@ -15,28 +15,38 @@ public class SpellChecker {
 		this.dict = dict;
 	}
 	
-	public String correct(String word){
+	/**
+	 * Returns the word, or list of words, with the lowest edit distance
+	 * from the provided word.
+	 * 
+	 * @param word
+	 * @return
+	 */
+	public List<String> correct(final String word){
 		
 		if(dict.hasWord(word)){
-			return word;
+			return new ArrayList<String>(){{
+				add(word);
+			}};
 		}
 		
-		String suggestion = word;
+		List<String> suggestions = new ArrayList<String>();
 		int newDistance = 0;
 		int prevDistance = Integer.MAX_VALUE;
 		
 		for(String s : dict.words()){
 			newDistance = Levenshtein.altGetEditDistance(word, s);
 			if(newDistance < prevDistance){
+				// lower edit distance. clear previous suggestions and start over
 				prevDistance = newDistance;
-				suggestion = s;
+				suggestions = new ArrayList<String>();
+				suggestions.add(s);
+			}else if(newDistance == prevDistance){
+				// same edit distance. keep as possible suggestions
+				suggestions.add(s);
 			}
-		}
-		
-		List<String> edits = getEdits(word);
-		
-		return suggestion;
-		
+		}		
+		return suggestions;
 	}
 	
 	private List<String> getEdits(String word){
@@ -44,23 +54,23 @@ public class SpellChecker {
 		List<String> edits = new ArrayList<String>();
 		
 		List<String> deletes = StringUtil.permDeletes(word);
-		System.out.println("deletes:");
-		this.printList(deletes);
+		//System.out.println("deletes:");
+		//this.printList(deletes);
 		edits.addAll(deletes);
 		
 		List<String> replaces = StringUtil.permReplaces(word);
-		System.out.println("replaces:");
-		this.printList(replaces);
+		//System.out.println("replaces:");
+		//this.printList(replaces);
 		edits.addAll(replaces);
 		
 		List<String> transposes = StringUtil.permTranspose(word);
-		System.out.println("transposes:");
-		this.printList(transposes);
+		//System.out.println("transposes:");
+		//this.printList(transposes);
 		edits.addAll(transposes);
 		
 		List<String> additions = StringUtil.permAdditions(word);
-		System.out.println("additions:");
-		this.printList(additions);
+		//System.out.println("additions:");
+		//this.printList(additions);
 		edits.addAll(additions);
 		
 		return edits;
