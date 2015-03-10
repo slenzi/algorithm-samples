@@ -1,20 +1,25 @@
 package org.lenzi.algorithm.text.dictionary;
 
 import java.io.File;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Set;
 
 public class Test {
 
-	public Test() {
-	
-	}
+	private SpellChecker checker;
 
 	public static void main(String[] args) {
 		
-		new Test().doTest();
+		new Test().doTests();
 
 	}
 	
-	public void doTest(){
+	public Test() {
+		initChecker();
+	}	
+	
+	private void initChecker(){
 		
 		//File f = new File("short_alpha.txt");
 		//File f = new File("unsorted_words.txt");
@@ -24,8 +29,36 @@ public class Test {
 		dict.load(f);
 		System.out.println("Dictionary size = " + dict.dictionarySize());
 		
-		SpellChecker checker = new SpellChecker(dict);
+		checker = new SpellChecker(dict);		
 		
+	}
+	
+	public void doTests(){
+			
+		//doEditsTest();
+		
+		doSpellingTests();
+		
+	}
+	
+	public void doEditsTest(){
+		
+		Set<String> n1Edits = checker.getEdits("multparticpant"); // multiparticipant
+		System.out.println("n-1 edits => " + n1Edits.size());
+		for(String s : n1Edits){
+			System.out.println(s);
+		}
+		
+		Set<String> n2Edits = checker.getEdits(n1Edits);
+		System.out.println("n-2 edits => " + n2Edits.size());
+		for(String s : n2Edits){
+			System.out.println(s);
+		}		
+		
+	}
+	
+	public void doSpellingTests(){
+
 		String[] misspelled = new String[]{
 				"kinsthesilogists", // kinesthesiologists
 				"asspect",			// aspect
@@ -41,10 +74,28 @@ public class Test {
 				"cermugeonnnnn",	// curmudgeon
 				"épalière"			// épaulière
 		};
+	
+		/*
+		String[] misspelled = new String[]{
+				"multparticpant",	// multiparticipant
+		};
+		*/
 		
+		long startTime, endTime, totalStartTime, totalEndTime = 0;
+		
+		totalStartTime = Calendar.getInstance().getTimeInMillis();
+		
+		List<String> suggestions = null;
 		for(String s : misspelled){
-			System.out.println(  String.format("Suggestion for %1$-20s = %2$s", s, checker.correct(s)) );
-		}		
+			startTime = Calendar.getInstance().getTimeInMillis();
+			suggestions = checker.correct(s);
+			endTime = Calendar.getInstance().getTimeInMillis();
+			System.out.println(  String.format("Suggestion for %1$-20s = %2$s (%3$s ms)", s, suggestions, (endTime - startTime)) );
+		}
+		
+		totalEndTime = Calendar.getInstance().getTimeInMillis();
+		
+		System.out.println("Time in seconds = " + ((totalEndTime - totalStartTime) / 1000));
 		
 	}
 

@@ -20,17 +20,6 @@ public abstract class DamerauLevenshtein {
 	public DamerauLevenshtein() {
 		super();
 	}
-	
-	/**
-	 * Compare with 256 possible characters
-	 * 
-	 * @param a
-	 * @param b
-	 * @return
-	 */
-	public static int compare(String a, String b){
-		return compare(a,b,ASCII);
-	}
 
 	/**
 	 * Compare two strings
@@ -46,8 +35,7 @@ public abstract class DamerauLevenshtein {
 		
 		try {
 			
-			//matrix = getDistanceMatrix(a,b,alphabetLength);
-			matrix = getDistanceMatrixMap(a,b);
+			matrix = getDistanceMatrix(a,b,alphabetLength);
 			
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.err.println("Error comparing words (" + a + ", " + b + "): " + e.getMessage());
@@ -56,6 +44,22 @@ public abstract class DamerauLevenshtein {
 		return matrix[a.length() + 1][b.length() + 1];
 		
 	}
+	
+	public static int compare(String a, String b) {
+		
+		int[][] matrix = null;
+		
+		try {
+			
+			matrix = getDistanceMatrixMap(a,b);
+			
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.err.println("Error comparing words (" + a + ", " + b + "): " + e.getMessage());
+		}
+		
+		return matrix[a.length() + 1][b.length() + 1];
+		
+	}	
 	
 	/**
 	 * Get distance matrix for with know alphabet length for words a and b
