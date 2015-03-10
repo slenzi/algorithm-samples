@@ -39,7 +39,9 @@ public class SpellChecker {
 			// only check words that have a size difference of less than two characters.
 			if(Math.abs(s.length() - word.length()) <= 2){
 			
-				newDistance = Levenshtein.altGetEditDistance(word, s);
+				//newDistance = Levenshtein.altGetEditDistance(word, s);
+				newDistance = DamerauLevenshtein.compare(word, s, DamerauLevenshtein.ASCII_EXTENDED);
+				
 				if(newDistance < prevDistance){
 					// lower edit distance. clear previous suggestions and start over
 					prevDistance = newDistance;

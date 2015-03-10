@@ -18,7 +18,7 @@ public class Test {
 		
 		//File f = new File("short_alpha.txt");
 		//File f = new File("unsorted_words.txt");
-		File f = new File("sorted_words.txt");
+		File f = new File("dictionary.txt");
 		
 		Dictionary dict = new Dictionary();
 		dict.load(f);
@@ -38,7 +38,8 @@ public class Test {
 				"presciptibillity",	// prescriptibility
 				"salloon",			// saloon
 				"trakeostomy",		// tracheostomy
-				"cermugeonnnnn"		// curmudgeon
+				"cermugeonnnnn",	// curmudgeon
+				"épalière"			// épaulière
 		};
 		
 		for(String s : misspelled){
