@@ -142,11 +142,10 @@ public abstract class DamerauLevenshtein {
 			int DB = 0;
 			for (int j = 1; j <= b.length(); j++) {
 				
-				//int i1 = DA[b.charAt(j - 1)];
 				daInt = DA.get(b.charAt(j - 1));
 				int i1 = ((daInt == null) ? 0 : daInt);
-				
 				int j1 = DB;
+				
 				int d = ((a.charAt(i - 1) == b.charAt(j - 1)) ? 0 : 1);
 				if (d == 0){
 					DB = j;

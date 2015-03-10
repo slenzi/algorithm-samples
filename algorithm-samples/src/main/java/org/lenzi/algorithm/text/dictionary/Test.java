@@ -60,6 +60,15 @@ public class Test {
 	public void doSpellingTests(){
 
 		String[] misspelled = new String[]{
+				"hous",				// house
+				"house",			// house
+				"stp",				// stop
+				"stopp",			// stop
+				"stoppp",			// stop
+				"fu",				// fun
+				"can ned",			// canned
+				"acamodation",		// accommodation
+				"acomodation",		// accommodation
 				"kinsthesilogists", // kinesthesiologists
 				"asspect",			// aspect
 				"multparticpant",	// multiparticipant
@@ -72,7 +81,9 @@ public class Test {
 				"salloon",			// saloon
 				"trakeostomy",		// tracheostomy
 				"cermugeonnnnn",	// curmudgeon
-				"épalière"			// épaulière
+				"épalière",			// épaulière
+				
+				"supercalifragalisticexpaladocious" // supercalifragilisticexpialidocious
 		};
 	
 		/*
