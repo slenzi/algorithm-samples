@@ -7,7 +7,7 @@
 
 	<groupId>org.lenzi</groupId>
 	<artifactId>algorithm-samples</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>0.0.1</version>
 	<packaging>jar</packaging>
 
 	<name>algorithm-samples</name>
@@ -16,9 +16,12 @@
 	<properties>
 		
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.build.source>1.7</project.build.source>
+		<project.build.target>1.7</project.build.target>
 		
 		<version.junit>4.12</version.junit>
 		<version.google.guava>18.0</version.google.guava>
+		<version.bliki>3.0.19</version.bliki>
 		
 	</properties>
 
@@ -36,8 +39,34 @@
 			<artifactId>guava</artifactId>
 			<version>${version.google.guava}</version>
 		</dependency>
-
-	
+		
+		<!-- library for parsing wikipedia files -->
+		<dependency>
+			<groupId>info.bliki.wiki</groupId>
+			<artifactId>bliki-core</artifactId>
+			<version>${version.bliki}</version>
+		</dependency>
+		
 	</dependencies>
+
+	<build>
+	
+		<finalName>${name}.${version}</finalName>
+
+		<plugins>
+		
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>${project.build.source}</source>
+					<target>${project.build.target}</target>
+				</configuration>
+			</plugin>
+			
+		</plugins>
+	
+	</build>
 	
 </project>
