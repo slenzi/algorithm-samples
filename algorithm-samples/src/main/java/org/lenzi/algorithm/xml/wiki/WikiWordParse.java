@@ -85,26 +85,20 @@ public class WikiWordParse {
 		executorService.execute(new Runnable() {			
 			
 		    public void run() {
-		    	
 				
 				File wikiFile = new File(wikiFilePath);
-				File output = new File(wikiFile.getParent() + File.separator + "out2.txt");
-				PrintStream pout = null;
-				try {
-					pout = new PrintStream(output);
-				} catch (FileNotFoundException e1) {
-					System.err.println("Error opening print steam for " + output.getAbsolutePath());
-				}		    	
+				File output = new File(wikiFile.getParent() + File.separator + "wiki_out.txt");
+				
+				System.out.println("Parsing " + wikiFile.getAbsolutePath());
 
 				try {
-		            IArticleFilter handler = new ArticleTextFilter(pout);
+		            IArticleFilter handler = new ArticleTextFilter(output);
 		            WikiXMLParser wxp = new WikiXMLParser(wikiFilePath, handler);
 		            wxp.parse();
 			    } catch (Exception e) {
 			        e.printStackTrace();
 			    }
-				
-				pout.close();
+		
 		    	
 		    }
 		});

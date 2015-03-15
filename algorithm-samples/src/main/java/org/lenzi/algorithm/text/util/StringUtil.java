@@ -59,6 +59,33 @@ public abstract class StringUtil {
 		return buf.toString();
 	}
 	
+	public static boolean hasConsecutive(String input, int maxCount){
+		
+		if(input == null)
+			return false;
+		if(input.length() < 2)
+			return false;
+		
+		char currChar, lastChar;
+		int charCount = 1;
+		currChar = input.charAt(0);
+		lastChar = currChar;		
+		
+		for(int i=1; i<input.length(); i++){
+			currChar = input.charAt(i);
+			if(currChar == lastChar){
+				charCount++;
+				if(charCount > maxCount){
+					return true;
+				}
+			}else{
+				charCount = 0;
+			}
+			lastChar = currChar;
+		}
+		return false;
+	}
+	
 	/**
 	 * Delete on char from the word, for every position, and
 	 * return all variations.
